@@ -4,6 +4,9 @@ import Layout from '../components/Layout';
 import Favorites from './Favorites';
 import Home from './Home';
 import MyNotes from './MyNotes';
+import NotePage from './NotePage';
+import SignIn from './SignIn';
+import SignUp from './SignUp';
 
 const Pages = () => {
   return (
@@ -29,6 +32,30 @@ const Pages = () => {
             <Favorites />
           </Layout>
         }></Route>
+      <Route
+        path="/note/:id"
+        element={
+          <Layout>
+            <NotePage />
+          </Layout>
+        }
+      />
+      <Route
+        path="/signup"
+        element={
+          <Layout>
+            <SignUp />
+          </Layout>
+        }
+      />
+      <Route
+        path="/signin"
+        element={
+          <Layout>
+            <SignIn />
+          </Layout>
+        }
+      />
     </Routes>
   );
 };

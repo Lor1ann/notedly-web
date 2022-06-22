@@ -14,3 +14,14 @@ export interface IAuthor {
     id: string;
     avatar?: string;
 }
+
+export interface ISignUpData {
+    username?: string;
+    email?: string;
+    password?: string;
+}
+
+export interface IUserFormProps{
+    action: any,
+    formType: string
+}

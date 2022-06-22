@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { INote } from '../types';
 import Note from './Note';
-
+import { Link } from 'react-router-dom';
 const NoteWrapper = styled.div`
   max-width: 800px;
   margin: 0 auto;
@@ -17,6 +17,7 @@ const NoteFeed: React.FC<{ notes: [INote] }> = ({ notes }) => {
       {notes.map((note: INote) => (
         <NoteWrapper key={note.id}>
           <Note note={note} />
+          <Link to={`note/${note.id}`}>Permalink</Link>
         </NoteWrapper>
       ))}
     </div>
