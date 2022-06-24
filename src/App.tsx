@@ -54,8 +54,6 @@ const client = new ApolloClient({
   connectToDevTools: true,
 });
 
-console.log(uri);
-
 function App() {
   return (
     <ApolloProvider client={client}>

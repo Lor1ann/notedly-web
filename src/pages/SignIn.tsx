@@ -12,12 +12,10 @@ const SIGNIN_USER = gql`
 
 const SignIn = () => {
   const client = useApolloClient();
-
   const nav = useNavigate();
-
-  const [signIn, { loading, error }] = useMutation(SIGNIN_USER, {
+  const [signIn] = useMutation(SIGNIN_USER, {
     onCompleted: (data) => {
-      localStorage.setItem('token', data.signUp);
+      localStorage.setItem('token', data.signIn);
       client.writeQuery({
         query: gql`
           {
@@ -27,14 +25,13 @@ const SignIn = () => {
         data: { isLoggedIn: true },
       });
       nav('/');
+      window.location.reload();
     },
   });
 
   return (
     <>
       <UserForm action={signIn} formType="signIn" />
-      {loading && <p>Loading...</p>}
-      {error && <p>Error signing in!</p>}
     </>
   );
 };

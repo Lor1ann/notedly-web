@@ -9,6 +9,15 @@
     author: IAuthor
 }
 
+export interface IUser {
+    id: string;
+    username: string
+    email: string
+    avatar: string
+    notes: INote[]
+    favorites: INote[]
+}
+
 export interface IAuthor {
     username: string;
     id: string;
@@ -24,4 +33,15 @@ export interface ISignUpData {
 export interface IUserFormProps{
     action: any,
     formType: string
+}
+
+export interface INewFormProps{
+    action: any,
+    content?: string,
+}
+
+export interface IFavoriteNoteProps {
+    me: IUser,
+    noteId: string,
+    favoriteCount: number,
 }

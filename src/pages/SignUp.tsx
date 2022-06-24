@@ -14,7 +14,7 @@ const SignUp = () => {
 
   const nav = useNavigate();
 
-  const [signUp, { loading, error }] = useMutation(SIGNUP_USER, {
+  const [signUp] = useMutation(SIGNUP_USER, {
     onCompleted: (data) => {
       localStorage.setItem('token', data.signUp);
       client.writeQuery({
@@ -26,14 +26,13 @@ const SignUp = () => {
         data: { isLoggedIn: true },
       });
       nav('/');
+      window.location.reload();
     },
   });
 
   return (
     <>
       <UserForm action={signUp} formType="signup" />
-      {loading && <p>Loading...</p>}
-      {error && <p>Error creating an account!</p>}
     </>
   );
 };

@@ -3,10 +3,18 @@ import { INote } from '../types';
 import ReactMarkdown from 'react-markdown';
 import { parseISO } from 'date-fns';
 import styled from 'styled-components';
+import NoteUser from './NoteUser';
 
 const StyledNote = styled.article`
   max-width: 800px;
   margin: 0 auto;
+`;
+
+const Markdown = styled.div`
+  img {
+    max-width: 400px;
+    border-radius: 30px;
+  }
 `;
 
 const MetaData = styled.div`
@@ -24,6 +32,8 @@ const UserActions = styled.div`
   margin-left: auto;
 `;
 
+const auth = !!localStorage.getItem('token');
+
 const Note: React.FC<{ note: INote }> = ({ note }) => {
   return (
     <StyledNote key={note.id}>
@@ -35,11 +45,19 @@ const Note: React.FC<{ note: INote }> = ({ note }) => {
           <em>by</em> {note.author.username} <br />{' '}
           <div>{parseISO(note.createdAt).toLocaleDateString('ru-RU').toString()}</div>
         </MetaInfo>
-        <UserActions>
-          <em>Favorites:</em> {note.favoriteCount}
-        </UserActions>
+        {auth ? (
+          <UserActions>
+            <NoteUser note={note} />
+          </UserActions>
+        ) : (
+          <UserActions>
+            <em>Favorites:</em> {note.favoriteCount}
+          </UserActions>
+        )}
       </MetaData>
-      <ReactMarkdown children={note.content} />
+      <Markdown>
+        <ReactMarkdown children={note.content} />
+      </Markdown>
     </StyledNote>
   );
 };

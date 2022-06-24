@@ -17,7 +17,7 @@ const NoteFeed: React.FC<{ notes: [INote] }> = ({ notes }) => {
       {notes.map((note: INote) => (
         <NoteWrapper key={note.id}>
           <Note note={note} />
-          <Link to={`note/${note.id}`}>Permalink</Link>
+          <Link to={`../note/${note.id}`}>Permalink</Link>
         </NoteWrapper>
       ))}
     </div>
